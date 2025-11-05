@@ -6,6 +6,7 @@
 # Database
 *.sql
 !database/schema.sql
+!sukhniwas.sql
 
 # Config files with sensitive data
 config/database.local.php
