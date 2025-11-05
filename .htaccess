@@ -1,0 +1,60 @@
+# Main .htaccess for sukhniwas
+
+# Prevent directory listing
+Options -Indexes +FollowSymLinks
+
+# Protect sensitive files (relaxed for local development)
+# <FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
+#     Require all denied
+# </FilesMatch>
+
+# Enable PHP error reporting in development (disable in production)
+# php_flag display_errors On
+# php_value error_reporting E_ALL
+
+# Set default timezone
+php_value date.timezone "Asia/Kolkata"
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevent access to config and includes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect root to public folder
+    RewriteCond %{REQUEST_URI} ^/sukhniwas/?$
+    RewriteRule ^(.*)$ public/index.php [L]
+    
+    # Block direct access to config directory
+    RewriteCond %{REQUEST_URI} /config/
+    RewriteRule ^config/.*$ - [F,L]
+    
+    # Block direct access to includes directory
+    RewriteCond %{REQUEST_URI} /includes/
+    RewriteRule ^includes/.*$ - [F,L]
+    
+    # Block direct access to database directory
+    RewriteCond %{REQUEST_URI} /database/
+    RewriteRule ^database/.*$ - [F,L]
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+

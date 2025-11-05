@@ -1,0 +1,17 @@
+# Uploads directory protection
+
+# Allow access to images
+Options -Indexes
+
+# Prevent execution of PHP files in uploads
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Allow only image files
+<FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+

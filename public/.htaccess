@@ -1,0 +1,11 @@
+# Public directory .htaccess
+
+# Allow access to public files
+Options -Indexes
+
+# Protect PHP files if needed (optional)
+# <FilesMatch "\.php$">
+#     Order Allow,Deny
+#     Allow from all
+# </FilesMatch>
+

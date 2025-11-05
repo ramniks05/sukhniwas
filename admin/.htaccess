@@ -1,0 +1,14 @@
+# Admin directory protection
+
+# Require authentication for admin area
+# Note: This is a basic protection. For production, consider additional security measures.
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect admin files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+

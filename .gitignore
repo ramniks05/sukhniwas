@@ -1,0 +1,33 @@
+# PHP
+*.log
+*.cache
+.htpasswd
+
+# Database
+*.sql
+!database/schema.sql
+
+# Config files with sensitive data
+config/database.local.php
+
+# Uploads (user-generated content)
+public/uploads/*
+!public/uploads/.htaccess
+!public/uploads/rooms/.gitkeep
+!public/uploads/thumbnails/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+
